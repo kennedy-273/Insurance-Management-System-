@@ -1,5 +1,5 @@
 <div mat-dialog-title>
-    <h1>Employee Form</h1>
+    <h1>Policy Form</h1>
 </div>
 <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
     <div mat-dialog-content class="content">
@@ -58,7 +58,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Package</mat-label>
                 <input matInput placeholder="Ex. 12" type="number" formControlName="package">
-                <mat-hint>In rupees</mat-hint>
+                <mat-hint>In kenyan shilling</mat-hint>
             </mat-form-field>
         </div>
     </div>
