@@ -43,6 +43,8 @@ This project is a simple Insurance Policy Management System built using Angular 
 To start the Angular application, run the following command:
 
 npm start
+[Uploading Screencast from 2024-12-31 23-44-37.webm…]()
+
 
 Have used json sever to test the endpoint run this command
 
