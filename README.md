@@ -44,6 +44,7 @@ To start the Angular application, run the following command:
 
 npm start
 
+[Uploading Screencast from 2024-12-31 23-44-37.webm…]()
 
 Have used json sever to test the endpoint run this command
 
@@ -68,8 +69,6 @@ The application will be available at `http://localhost:4200`.
 - `src/app/app.module.ts`: Main module of the application.
 - `src/app/app.component.ts`: Root component of the application.
 
-##Demo 
 
-file:///home/kennedy/Videos/Screencasts/Screencast%20from%202024-12-31%2023-44-37.webm
 
 
