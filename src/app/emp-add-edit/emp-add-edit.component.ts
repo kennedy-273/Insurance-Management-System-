@@ -11,6 +11,7 @@ import { EmployeeService } from '../services/employee.service';
 })
 export class InsuranceAddEditComponent implements OnInit {
   empForm: FormGroup;
+  isEditMode: boolean;
 
 
   constructor(
@@ -20,8 +21,9 @@ export class InsuranceAddEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _coreService: CoreService
   ) {
+    this.isEditMode = !!data;
     this.empForm = this._fb.group({
-      id: [{ value: data?.id || '', disabled: true }, Validators.required],
+      id: [data?.id || '', Validators.required],
       company: [data?.company || '', Validators.required],
       policy: [data?.policy || '', Validators.required],
       issuedOn: [data?.issuedOn || '', Validators.required],
@@ -31,7 +33,12 @@ export class InsuranceAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.empForm.patchValue(this.data);
+    if (this.isEditMode){
+      this.empForm.get('id')?.disable();
+      this.empForm.patchValue(this.data);
+
+    }
+    
   }
 
   onFormSubmit() {

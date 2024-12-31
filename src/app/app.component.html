@@ -4,6 +4,8 @@
   <button mat-raised-button (click)="openAddEditEmpForm()">
     ADD POLICY
   </button>
+  
+
 </mat-toolbar>
 
 <div class="main-body p-4">
@@ -17,13 +19,13 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <mat-card *ngFor="let insurance of dataSource.filteredData" class="insurance-card">
       <mat-card-header>
-        <mat-card-title>INS/NO/{{insurance.id | number:'7.0'}}</mat-card-title>
+        <mat-card-title>INS/NO/{{insurance.id | number:'7.0'}} </mat-card-title>
         <mat-card-subtitle>{{insurance.company}}</mat-card-subtitle>
       </mat-card-header>
       
       <mat-card-content>
         <div class="mt-2">
-          <p><strong>Insurance Policy:</strong> {{insurance.policy}}</p>
+          <p> {{insurance.policy}}</p>
           <p><strong>Issued On:</strong> {{insurance.issuedOn | date}}</p>
           <p><strong>Expiring On:</strong> {{insurance.expiringOn | date}}</p>
           <p><strong>Status:</strong> 
@@ -47,6 +49,4 @@
     </mat-card>
   </div>
 
-  <!-- Paginator -->
-  <mat-paginator [pageSizeOptions]="[6, 12, 24, 48]" aria-label="Select page of users"></mat-paginator>
 </div>
