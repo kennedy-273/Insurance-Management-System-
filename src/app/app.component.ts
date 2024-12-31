@@ -51,7 +51,62 @@ export class AppComponent implements OnInit {
   getEmployeeList() {
     this._empService.getEmployeeList().subscribe({
       next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
+        if (res.length === 0) {
+          // Add default insurance policies if the list is empty
+          const defaultPolicies = [
+            {
+              id: 1,
+              company: 'Britam Insurance Company',
+              policy: 'Health Insurance',
+              issuedOn: '2024-12-02T21:00:00.000Z',
+              expiringOn: '2024-12-11T21:00:00.000Z',
+              status: 'active'
+            },
+            {
+              id: 2,
+              company: 'AIG Insurance Company',
+              policy: 'Life Insurance',
+              issuedOn: '2024-12-04T21:00:00.000Z',
+              expiringOn: '2024-12-06T21:00:00.000Z',
+              status: 'renew'
+            },
+            {
+              id: 3,
+              company: 'Jubilee Insurance Company',
+              policy: 'Health Insurance',
+              issuedOn: '2024-12-06T21:00:00.000Z',
+              expiringOn: '2024-12-08T21:00:00.000Z',
+              status: 'renew'
+            },
+            {
+              id: 4,
+              company: 'APA Insurance Company',
+              policy: 'Homeowners Insurance',
+              issuedOn: '2024-12-08T21:00:00.000Z',
+              expiringOn: '2024-12-10T21:00:00.000Z',
+              status: 'renew'
+            },
+            {
+              id: 5,
+              company: 'APA Insurance Company',
+              policy: 'Automobile Insurance',
+              issuedOn: '2024-12-12T21:00:00.000Z',
+              expiringOn: '2024-12-14T21:00:00.000Z',
+              status: 'renew'
+            },
+            {
+              id: 6,
+              company: 'Britam Insurance Company',
+              policy: 'Term Assurance',
+              issuedOn: '2024-12-14T21:00:00.000Z',
+              expiringOn: '2024-12-16T21:00:00.000Z',
+              status: 'active'
+            }
+          ];
+          this.dataSource = new MatTableDataSource(defaultPolicies);
+        } else {
+          this.dataSource = new MatTableDataSource(res);
+        }
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },

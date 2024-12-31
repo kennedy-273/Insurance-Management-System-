@@ -72,14 +72,6 @@
       "expiringOn": "2024-12-18T21:00:00.000Z",
       "status": "renew",
       "id": "8"
-    },
-    {
-      "id": "5",
-      "company": "ken",
-      "policy": "hh",
-      "issuedOn": "2024-12-03T21:00:00.000Z",
-      "expiringOn": "2024-12-12T21:00:00.000Z",
-      "status": "renew"
     }
   ]
 }
