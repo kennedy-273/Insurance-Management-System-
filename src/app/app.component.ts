@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { EmpAddEditComponent } from './emp-add-edit/emp-add-edit.component';
+import { InsuranceAddEditComponent } from './emp-add-edit/emp-add-edit.component';
 import { EmployeeService } from './services/employee.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -15,15 +15,11 @@ import { CoreService } from './core/core.service';
 export class AppComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
-    'firstName',
-    'lastName',
-    'email',
-    'dob',
-    'gender',
-    'education',
     'company',
-    'experience',
-    'package',
+    'policy',
+    'issuedOn',
+    'expiringOn',
+    'status',
     'action',
   ];
   dataSource!: MatTableDataSource<any>;
@@ -35,14 +31,14 @@ export class AppComponent implements OnInit {
     private _dialog: MatDialog,
     private _empService: EmployeeService,
     private _coreService: CoreService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getEmployeeList();
   }
 
   openAddEditEmpForm() {
-    const dialogRef = this._dialog.open(EmpAddEditComponent);
+    const dialogRef = this._dialog.open(InsuranceAddEditComponent);
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
@@ -75,7 +71,7 @@ export class AppComponent implements OnInit {
   deleteEmployee(id: number) {
     this._empService.deleteEmployee(id).subscribe({
       next: (res) => {
-        this._coreService.openSnackBar('Employee deleted!', 'done');
+        this._coreService.openSnackBar('Insurance Policy deleted!', 'done');
         this.getEmployeeList();
       },
       error: console.log,
@@ -83,7 +79,7 @@ export class AppComponent implements OnInit {
   }
 
   openEditForm(data: any) {
-    const dialogRef = this._dialog.open(EmpAddEditComponent, {
+    const dialogRef = this._dialog.open(InsuranceAddEditComponent, {
       data,
     });
 

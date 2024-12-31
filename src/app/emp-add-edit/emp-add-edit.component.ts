@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoreService } from '../core/core.service';
 import { EmployeeService } from '../services/employee.service';
@@ -9,34 +9,24 @@ import { EmployeeService } from '../services/employee.service';
   templateUrl: './emp-add-edit.component.html',
   styleUrls: ['./emp-add-edit.component.scss'],
 })
-export class EmpAddEditComponent implements OnInit {
+export class InsuranceAddEditComponent implements OnInit {
   empForm: FormGroup;
 
-  education: string[] = [
-    'Matric',
-    'Diploma',
-    'Intermediate',
-    'Graduate',
-    'Post Graduate',
-  ];
 
   constructor(
     private _fb: FormBuilder,
     private _empService: EmployeeService,
-    private _dialogRef: MatDialogRef<EmpAddEditComponent>,
+    private _dialogRef: MatDialogRef<InsuranceAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _coreService: CoreService
   ) {
     this.empForm = this._fb.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      dob: '',
-      gender: '',
-      education: '',
-      company: '',
-      experience: '',
-      package: '',
+      id: [{ value: data?.id || '', disabled: true }, Validators.required],
+      company: [data?.company || '', Validators.required],
+      policy: [data?.policy || '', Validators.required],
+      issuedOn: [data?.issuedOn || '', Validators.required],
+      expiringOn: [data?.expiringOn || '', Validators.required],
+      status: [data?.status || '', Validators.required]
     });
   }
 
@@ -51,7 +41,7 @@ export class EmpAddEditComponent implements OnInit {
           .updateEmployee(this.data.id, this.empForm.value)
           .subscribe({
             next: (val: any) => {
-              this._coreService.openSnackBar('Employee detail updated!');
+              this._coreService.openSnackBar('Insurance Policy detail updated!');
               this._dialogRef.close(true);
             },
             error: (err: any) => {
@@ -61,7 +51,7 @@ export class EmpAddEditComponent implements OnInit {
       } else {
         this._empService.addEmployee(this.empForm.value).subscribe({
           next: (val: any) => {
-            this._coreService.openSnackBar('Employee added successfully');
+            this._coreService.openSnackBar('Insurance Policy added successfully');
             this._dialogRef.close(true);
           },
           error: (err: any) => {

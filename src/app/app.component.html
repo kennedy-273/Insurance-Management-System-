@@ -10,33 +10,37 @@
   <!-- Filter Input -->
   <mat-form-field class="w-full mb-4">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search employees" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search policies" #input>
   </mat-form-field>
 
   <!-- Card Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <mat-card *ngFor="let employee of dataSource.filteredData" class="employee-card">
+    <mat-card *ngFor="let insurance of dataSource.filteredData" class="insurance-card">
       <mat-card-header>
-        <mat-card-title>{{employee.firstName}} {{employee.lastName}}</mat-card-title>
-        <mat-card-subtitle>{{employee.company}}</mat-card-subtitle>
+        <mat-card-title>INS/NO/{{insurance.id | number:'7.0'}}</mat-card-title>
+        <mat-card-subtitle>{{insurance.company}}</mat-card-subtitle>
       </mat-card-header>
       
       <mat-card-content>
         <div class="mt-2">
-          <p><strong>Email:</strong> {{employee.email}}</p>
-          <p><strong>Date of Birth:</strong> {{employee.dob | date}}</p>
-          <p><strong>Gender:</strong> {{employee.gender}}</p>
-          <p><strong>Education:</strong> {{employee.education}}</p>
-          <p><strong>Experience:</strong> {{employee.experience}} years</p>
-          <p><strong>Package:</strong> {{employee.package | currency:'KSH'}}</p>
+          <p><strong>Insurance Policy:</strong> {{insurance.policy}}</p>
+          <p><strong>Issued On:</strong> {{insurance.issuedOn | date}}</p>
+          <p><strong>Expiring On:</strong> {{insurance.expiringOn | date}}</p>
+          <p><strong>Status:</strong> 
+            <span [ngClass]="{
+              'active': insurance.status === 'active',
+              'expired': insurance.status === 'expired',
+              'renew': insurance.status === 'renew'
+            }">{{insurance.status}}</span>
+          </p>
         </div>
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-icon-button color="primary" (click)="openEditForm(employee)">
+        <button mat-icon-button color="primary" (click)="openEditForm(insurance)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteEmployee(employee.id)">
+        <button mat-icon-button color="warn" (click)="deleteEmployee(insurance.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
