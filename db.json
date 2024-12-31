@@ -72,6 +72,14 @@
       "expiringOn": "2024-12-18T21:00:00.000Z",
       "status": "renew",
       "id": "8"
+    },
+    {
+      "id": "9",
+      "company": "Kennedy  compnay",
+      "policy": "Health Insurance The soaring cost of medical care is reason enough to make health insurance a necessity. Even a simple visit to the family doctor can result in a hefty bill. More serious injuries that result in a hospital stay can generate a bill that tops the price of a one-week stay at a luxury resort. Injuries that require surgery can quickly rack up five-figure costs. 2 Although the cost of health insurance is a financial burden for just about everyone, the potential cost of not having coverage is much higher.",
+      "issuedOn": "2024-12-01T21:00:00.000Z",
+      "expiringOn": "2024-12-05T21:00:00.000Z",
+      "status": "expired"
     }
   ]
 }
